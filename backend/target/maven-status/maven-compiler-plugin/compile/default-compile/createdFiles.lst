@@ -1,0 +1,6 @@
+com\example\demo\DemoApplication.class
+com\example\carapi\CarApiApplication.class
+com\example\carapi\service\CarService.class
+com\example\carapi\repository\CarRepository.class
+com\example\carapi\controller\CarController.class
+com\example\carapi\model\Car.class

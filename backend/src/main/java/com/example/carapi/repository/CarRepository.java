@@ -1,4 +1,4 @@
-package main.java.com.example.carapi.repository;
+package com.example.carapi.repository;
 
 import com.example.carapi.model.Car;
 import org.springframework.data.jpa.repository.JpaRepository;

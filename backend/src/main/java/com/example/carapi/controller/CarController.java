@@ -1,4 +1,4 @@
-package main.java.com.example.carapi.controller;
+package com.example.carapi.controller;
 
 import com.example.carapi.model.Car;
 import com.example.carapi.service.CarService;
@@ -27,9 +27,9 @@ public class CarController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public Car createCar(@RequestBody Car car) {
-        return carService.save(car);
+    @PostMapping("/batch")
+    public List<Car> createCars(@RequestBody List<Car> cars) {
+        return carService.saveAll(cars);
     }
 
     @DeleteMapping("/{id}")

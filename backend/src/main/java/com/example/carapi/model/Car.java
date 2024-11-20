@@ -1,4 +1,4 @@
-package main.java.com.example.carapi.model;
+package com.example.carapi.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
