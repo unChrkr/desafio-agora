@@ -1,8 +1,8 @@
 <template>
   <div>
-    <input v-model="search" @input="fetchCars" placeholder="Buscar por nome">
+    <input v-model="search" @input="fetchCars" placeholder="Buscar por nome" />
     <button @click="filterFavorites">Mostrar Favoritos</button>
-    <div v-for="car in cars" :key="car.id">
+    <div v-for="car in displayedCars" :key="car.id">
       <CarItem :car="car" />
     </div>
     <button @click="loadMore">Carregar mais</button>
@@ -18,6 +18,7 @@ export default {
   data() {
     return {
       cars: [],
+      displayedCars: [],
       search: "",
       page: 1,
       limit: 10,
@@ -26,10 +27,16 @@ export default {
   },
   methods: {
     async fetchCars() {
-      const response = await axios.get(`http://localhost:8080/cars`, {
-        params: { name: this.search, page: this.page, limit: this.limit }
-      });
-      this.cars = response.data;
+      try {
+        const response = await axios.get(`http://localhost:8080/cars`, {
+          params: { name: this.search, page: this.page, limit: this.limit }
+        });
+        console.log('response.data', response.data);
+        this.cars = response.data;
+        this.updateDisplayedCars();
+      } catch (error) {
+        console.error("Erro ao buscar carros:", error);
+      }
     },
     loadMore() {
       this.page++;
@@ -37,7 +44,15 @@ export default {
     },
     filterFavorites() {
       this.favoritesOnly = !this.favoritesOnly;
-      this.fetchCars();
+      this.updateDisplayedCars();
+    },
+    updateDisplayedCars() {
+      if (this.favoritesOnly) {
+        // Supondo que os carros favoritos tenham uma propriedade `isFavorite`
+        this.displayedCars = this.cars.filter(car => car.isFavorite);
+      } else {
+        this.displayedCars = this.cars;
+      }
     }
   },
   mounted() {

@@ -17,13 +17,14 @@
 </template>
 
 <script lang="ts">
-import axios from "axios";
-import { isFavorite, toggleFavorite } from "@/utils/localStorage";
+import { defineComponent } from 'vue';
+import axios from 'axios';
+import { isFavorite, toggleFavorite } from '@/utils/localStorage';
 
-export default {
+export default defineComponent({
   data() {
     return {
-      car: null
+      car: null as any
     };
   },
   methods: {
@@ -34,11 +35,11 @@ export default {
       this.car = response.data;
     },
     goBack() {
-      this.$router.push({ name: "Home" });
+      this.$router.push({ name: 'Home' });
     }
   },
   mounted() {
     this.fetchCar();
   }
-};
+});
 </script>

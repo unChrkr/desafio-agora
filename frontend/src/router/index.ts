@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Home from '@/views/Home.vue';
+import HomePage from '@/views/HomePage.vue';
 import CarDetailsView from '@/views/CarDetailsView.vue';
 
 const routes: Array<RouteRecordRaw> = [
-  { path: '/', name: 'Home', component: Home },
+  { path: '/', name: 'Home', component: HomePage },
   { path: '/car/:id', name: 'CarDetails', component: CarDetailsView },
 ];
 
